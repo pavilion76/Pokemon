@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             MainActivity activity = activityWeakReference.get();
             if (activity == null || activity.isFinishing())
                 return;
-            activity.resultText.setText("Hey it actually made it to onPostExecute\n\n");
+            //activity.resultText.setText("Hey it actually made it to onPostExecute\n\n");
         }
     }
     private void loadImageFromURL(String url){
