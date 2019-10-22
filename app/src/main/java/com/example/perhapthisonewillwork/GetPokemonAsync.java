@@ -14,7 +14,6 @@ public class GetPokemonAsync extends AsyncTask<URL, Integer, String>{
     private String page = "";
     @Override
     protected String doInBackground(URL... urls) {
-
         try{
             OkHttpClient client = new OkHttpClient();
             String url ="https://pokeapi.co/api/v2/pokemon/ditto/";
@@ -32,8 +31,8 @@ public class GetPokemonAsync extends AsyncTask<URL, Integer, String>{
         }
         return null;
     }
+
     protected void onPostExecute(String result){
-        //parse json
-        result= page;
+
     }
 }
