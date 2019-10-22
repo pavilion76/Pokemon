@@ -2,6 +2,7 @@ package com.example.perhapthisonewillwork;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -40,11 +41,13 @@ public class MainActivity extends AppCompatActivity {
     private URL url;
     private TextView resultText;
     private TextView pokemonName;
-    myAsyncTask task = new myAsyncTask(this);
+
     private String[] abilities;
     private String height;
     private String[] moves;
     private ImageView spriteDisplay;
+    private MainActivity myMainActivity = this;
+    private ImageView missingNo;
 
 
     @Override
@@ -55,18 +58,25 @@ public class MainActivity extends AppCompatActivity {
         pokemonName = (TextView) findViewById(R.id.pokemonName);
         resultText = (TextView) findViewById(R.id.resultText);
         spriteDisplay = (ImageView) findViewById(R.id.pokemonSprite);
+        missingNo = (ImageView) findViewById(R.id.missingNo);
+
+
 
 
         getPokedex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resultText.setText("");
                 GetPokemonAsync thread = new GetPokemonAsync();
+                String urlString = "https://pokeapi.co/api/v2/pokemon/"+pokemonName.getText()+"/";
+                //resultText.setText(urlString);
                 String result = "";
                 try {
-                    url = new URL("https://pokeapi.co/api/v2/pokemon/ditto/");
+                    url = new URL(urlString);
                     //thread2.doInBackground(url);
                     //thread.execute(url);
-
+                    //crashes here on second run.
+                    myAsyncTask task = new myAsyncTask(myMainActivity);
                     task.execute(url);
                 } catch (IOException e) {
                     e.getMessage();
@@ -103,7 +113,8 @@ public class MainActivity extends AppCompatActivity {
             publishProgress(0);
             try{
                 OkHttpClient client = new OkHttpClient();
-                String url ="https://pokeapi.co/api/v2/pokemon/ditto/";
+                GetPokemonAsync thread = new GetPokemonAsync();
+                //String urlString = "https://pokeapi.co/api/v2/pokemon/"+pokemonName.getText()+"/";
                 Request request = new Request.Builder()
                         .url(url)
                         .build();
@@ -129,7 +140,9 @@ public class MainActivity extends AppCompatActivity {
                                         String sprite = sprites.getString("front_default");
                                         loadImageFromURL(sprite);
                                     }catch (JSONException e){
-                                        resultText.append(e.getMessage());
+                                        resultText.append("Died in run" +e.getMessage());
+                                        missingNo.setVisibility(View.VISIBLE);
+                                        resultText.setText("Something went wrong. Please check spelling, and make sure there isn't anything capitalised.");
                                     }
                                     resultText.append("\n\n");
                                 }
@@ -143,7 +156,10 @@ public class MainActivity extends AppCompatActivity {
                 String page=body.toString();*/
                 throw new Exception("Why?");
             }catch (Exception e){
-                e.getMessage();
+                resultText.setText("died in doInBackground()"+ e.getMessage());
+                missingNo.setVisibility(View.VISIBLE);
+                resultText.setText("Something went wrong. Please check spelling, and make sure there isn't anything capitalised.");
+
             }finally {
                 //cleanup
             }
