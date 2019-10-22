@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mySprite"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -29,29 +30,21 @@
 
     <TextView
         android:id="@+id/resultText"
-        android:layout_width="260dp"
-        android:layout_height="101dp"
+        android:layout_width="320dp"
+        android:layout_height="353dp"
         android:editable="false"
         android:text="Results go here"
         app:layout_constraintBottom_toTopOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:layout_width="418dp"
-        android:layout_height="430dp"
-        android:orientation="vertical"
-        android:gravity="center"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="99dp"></LinearLayout>
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_margin="16dp"
-        android:visibility="invisible"
-        tools:visibility="visible"/>
+    <ImageView
+        android:id="@+id/pokemonSprite"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toTopOf="@+id/resultText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pokemonName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
