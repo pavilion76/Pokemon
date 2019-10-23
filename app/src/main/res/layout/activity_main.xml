@@ -11,21 +11,21 @@
         android:id="@+id/pokemonName"
         android:layout_width="165dp"
         android:layout_height="27dp"
-        android:layout_marginTop="32dp"
         android:editable="true"
         android:hint="Enter pokemon name here"
+        app:layout_constraintBottom_toTopOf="@+id/pokemonSprite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.471"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Button"
+        android:text="Look up Pokemon "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -34,18 +34,18 @@
         android:layout_height="353dp"
         android:editable="false"
         android:hint="Results go here"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
+        app:layout_constraintBottom_toBottomOf="@+id/submit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/pokemonSprite"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="183dp"
+        android:layout_height="166dp"
         app:layout_constraintBottom_toTopOf="@+id/resultText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pokemonName" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/missingNo"
@@ -55,7 +55,16 @@
         app:layout_constraintBottom_toTopOf="@+id/resultText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pokemonName"
         app:srcCompat="@drawable/missingno" />
+
+    <Button
+        android:id="@+id/typeSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Look up type"
+        app:layout_constraintBottom_toTopOf="@+id/pokemonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

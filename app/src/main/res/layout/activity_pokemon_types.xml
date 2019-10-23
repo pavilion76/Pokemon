@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".PokemonTypes">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:autoSizeTextType="uniform"
+            android:editable="false"
+            android:text="Please select a type" />
+
+        <Button
+            android:id="@+id/normal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="normal" />
+
+        <Button
+            android:id="@+id/fighting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="fighting" />
+
+        <Button
+            android:id="@+id/flying"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="flying" />
+
+        <Button
+            android:id="@+id/poison"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="poison" />
+
+        <Button
+            android:id="@+id/ground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ground" />
+
+        <Button
+            android:id="@+id/rock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="rock" />
+
+        <Button
+            android:id="@+id/bug"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="bug" />
+
+        <Button
+            android:id="@+id/ghost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ghost" />
+
+        <Button
+            android:id="@+id/steel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="steel" />
+
+        <Button
+            android:id="@+id/fire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="fire" />
+        <Button
+            android:id="@+id/water"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="water" />
+
+        <Button
+            android:id="@+id/grass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="grass" />
+
+        <Button
+            android:id="@+id/electric"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="electric" />
+
+        <Button
+            android:id="@+id/psychic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="psychic" />
+        <Button
+            android:id="@+id/ice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ice" />
+
+        <Button
+            android:id="@+id/dragon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dragon" />
+
+        <Button
+            android:id="@+id/dark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="dark" />
+        <Button
+            android:id="@+id/fairy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="fairy" />
+
+        <Button
+            android:id="@+id/unknown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="unknown" />
+
+        <Button
+            android:id="@+id/shadow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="shadow" />
+
+        <EditText
+            android:id="@+id/typeResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+    </LinearLayout>
+</ScrollView>

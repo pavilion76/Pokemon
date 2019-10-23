@@ -3,6 +3,7 @@ package com.example.perhapthisonewillwork;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -54,9 +55,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button getPokedex = (Button) findViewById(R.id.submit);
+        Button getType = (Button) findViewById(R.id.typeSearch);
         pokemonName = (TextView) findViewById(R.id.pokemonName);
         resultText = (TextView) findViewById(R.id.resultText);
         spriteDisplay = (ImageView) findViewById(R.id.pokemonSprite);
+        getType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PokemonTypes.class));
+            }
+        });
+
 
 
 
@@ -64,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 resultText.setText("");
-                GetPokemonAsync thread = new GetPokemonAsync();
+                //GetPokemonAsync thread = new GetPokemonAsync();
                 String urlString = "https://pokeapi.co/api/v2/pokemon/"+pokemonName.getText()+"/";
                 //resultText.setText(urlString);
                 String result = "";
@@ -166,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
             //activity.resultText.setText("Hey it actually made it to onPostExecute\n\n");
         }
     }
+
     private void loadImageFromURL(String url){
         Picasso.with(this).load(url).placeholder(R.mipmap.ic_launcher) //optional
                 .error(R.mipmap.ic_launcher)
