@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     private String[] moves;
     private ImageView spriteDisplay;
     private MainActivity myMainActivity = this;
-    private ImageView missingNo;
 
 
     @Override
@@ -58,8 +57,6 @@ public class MainActivity extends AppCompatActivity {
         pokemonName = (TextView) findViewById(R.id.pokemonName);
         resultText = (TextView) findViewById(R.id.resultText);
         spriteDisplay = (ImageView) findViewById(R.id.pokemonSprite);
-        missingNo = (ImageView) findViewById(R.id.missingNo);
-
 
 
 
@@ -141,8 +138,6 @@ public class MainActivity extends AppCompatActivity {
                                         loadImageFromURL(sprite);
                                     }catch (JSONException e){
                                         resultText.append("Died in run" +e.getMessage());
-                                        missingNo.setVisibility(View.VISIBLE);
-                                        resultText.setText("Something went wrong. Please check spelling, and make sure there isn't anything capitalised.");
                                     }
                                     resultText.append("\n\n");
                                 }
@@ -156,10 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 String page=body.toString();*/
                 throw new Exception("Why?");
             }catch (Exception e){
-                resultText.setText("died in doInBackground()"+ e.getMessage());
-                missingNo.setVisibility(View.VISIBLE);
-                resultText.setText("Something went wrong. Please check spelling, and make sure there isn't anything capitalised.");
-
+                //resultText.setText("died in doInBackground()"+ e.getMessage());
             }finally {
                 //cleanup
             }
