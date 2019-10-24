@@ -63,7 +63,7 @@ public class PokemonTypes extends AppCompatActivity {
         myActivity = this;
 
         resultText = (TextView) findViewById(R.id.typeResults);
-        //20 onclick listeners... one for each button
+        //20 onclick listeners... one for each button. There is probably a better way to handle this, but I don't have the time to figure out what that method is.
         {
             normal.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -331,17 +331,18 @@ public class PokemonTypes extends AppCompatActivity {
 
     }
 
+    //Just copied this from the main activity, just switched the weak referenec to this.
     private class myAsyncTask extends AsyncTask<URL, Integer, String> {
         private WeakReference<PokemonTypes> activityWeakReference;
         myAsyncTask(PokemonTypes activity){
-            int x;
             activityWeakReference = new WeakReference<>(activity);
         }
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             PokemonTypes activity = activityWeakReference.get();
+            //clear the previous entry.
+            activity.resultText.setText("");
             if (activity == null || activity.isFinishing())
                 return;
         }
@@ -359,12 +360,10 @@ public class PokemonTypes extends AppCompatActivity {
             try{
                 OkHttpClient client = new OkHttpClient();
                 GetPokemonAsync thread = new GetPokemonAsync();
-                //String urlString = "https://pokeapi.co/api/v2/pokemon/"+pokemonName.getText()+"/";
                 Request request = new Request.Builder()
                         .url(url)
                         .build();
                 publishProgress(10);
-
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -383,10 +382,6 @@ public class PokemonTypes extends AppCompatActivity {
                         }
                     }
                 });
-                /*Call call = client.newCall(request);
-                Response response = call.execute();
-                ResponseBody body = response.body();
-                String page=body.toString();*/
                 throw new Exception("Why?");
             }catch (Exception e){
                 //resultText.setText("died in doInBackground()"+ e.getMessage());

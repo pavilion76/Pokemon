@@ -73,15 +73,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 resultText.setText("");
-                //GetPokemonAsync thread = new GetPokemonAsync();
+                //create the URL
                 String urlString = "https://pokeapi.co/api/v2/pokemon/"+pokemonName.getText()+"/";
-                //resultText.setText(urlString);
                 String result = "";
                 try {
                     url = new URL(urlString);
-                    //thread2.doInBackground(url);
-                    //thread.execute(url);
-                    //crashes here on second run.
                     myAsyncTask task = new myAsyncTask(myMainActivity);
                     task.execute(url);
                 } catch (IOException e) {
@@ -118,14 +114,16 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(URL... urls) {
             publishProgress(0);
             try{
+                //create the object that will actually do the fetching.
                 OkHttpClient client = new OkHttpClient();
-                GetPokemonAsync thread = new GetPokemonAsync();
+
+                //GetPokemonAsync thread = new GetPokemonAsync();
                 //String urlString = "https://pokeapi.co/api/v2/pokemon/"+pokemonName.getText()+"/";
                 Request request = new Request.Builder()
                         .url(url)
                         .build();
                 publishProgress(10);
-
+                //I don't know how the newCall really works. Apparently it really needs this callback.
                 client.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
@@ -138,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
                             MainActivity.this.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    //parse the JSON that I just recieved.
                                     jsonParse(myResponse);
                                     try{
                                         //Load the sprite
@@ -154,16 +153,13 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-                /*Call call = client.newCall(request);
-                Response response = call.execute();
-                ResponseBody body = response.body();
-                String page=body.toString();*/
+                //I had to put this in a try catch, and I was getting an error that nothing was thrown. You'd think that was a good thing, but apparently it really wants an error to be thrown, so I threw an error.
                 throw new Exception("Why?");
             }catch (Exception e){
                 //resultText.setText("died in doInBackground()"+ e.getMessage());
             }finally {
-                //cleanup
             }
+            //It was probably supposed to return the API result here, but oh well.
             return "finished";
         }
         @Override
@@ -172,7 +168,6 @@ public class MainActivity extends AppCompatActivity {
             MainActivity activity = activityWeakReference.get();
             if (activity == null || activity.isFinishing())
                 return;
-            //activity.resultText.setText("Hey it actually made it to onPostExecute\n\n");
         }
     }
 
@@ -180,6 +175,7 @@ public class MainActivity extends AppCompatActivity {
         Picasso.with(this).load(url).placeholder(R.mipmap.ic_launcher) //optional
                 .error(R.mipmap.ic_launcher)
                 .into(spriteDisplay,new com.squareup.picasso.Callback(){
+                    //wouldn't let me compile without these....
                     @Override
                     public void onSuccess(){
 
@@ -193,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
     }
     private void jsonParse(String myResponse){
         try {
-            //resultText.setText(myResponse);
             //Abilities
             result = myResponse;
             JSONObject obj = new JSONObject(result);
@@ -219,14 +214,7 @@ public class MainActivity extends AppCompatActivity {
             }
             resultText.append("\n\n");
 
-
-
-
-                                        /*JSONObject jsonabilities = obj.getJSONObject("abilities");
-                                        abilities[0] = jsonabilities.getJSONObject("0").getString("name");
-                                        abilities[1] = jsonabilities.getJSONObject("1").getString("name");
-
-                                        resultText.setText(abilities[0]);*/
+            
         }catch (JSONException e){
             resultText.setText(e.getMessage());
         }
